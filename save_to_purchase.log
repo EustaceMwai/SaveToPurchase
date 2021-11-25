@@ -1,0 +1,414 @@
+2021-11-22 16:52:55,013 ERROR error Object of type datetime is not JSON serializable in add_entity_types 
+2021-11-22 16:56:03,516 ERROR Object of type datetime is not JSON serializable 
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\SaveToPurchase\index.py", line 65, in add_entity_types
+    return json.dumps(
+  File "C:\Users\Eustace\AppData\Local\Programs\Python\Python39\lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "C:\Users\Eustace\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Users\Eustace\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\Eustace\AppData\Local\Programs\Python\Python39\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type datetime is not JSON serializable
+2021-11-22 16:56:03,557 ERROR error Object of type datetime is not JSON serializable in add_entity_types 
+2021-11-22 18:24:21,816 INFO registration request{'first_name': 'Eustace', 'other_names': 'Mwai', 'entity_type': 'Individual', 'msisdn': '254718273753', 'password': '1234', 'document_type': 'national_id', 'description': 'national_id', 'document_number': '35692358', 'language': 'english', 'currency': 'shillings'} 
+2021-11-22 18:24:22,412 INFO (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`entity_users`, CONSTRAINT `entity_users_ibfk_2` FOREIGN KEY (`user_type_id`) REFERENCES `user_types` (`id`))')
+[SQL: INSERT INTO entity_users (user_name, password, entity_id, user_type_id, user_status, language, date_created, live_date, end_date) VALUES (%(user_name)s, %(password)s, %(entity_id)s, %(user_type_id)s, %(user_status)s, %(language)s, %(date_created)s, %(live_date)s, %(end_date)s)]
+[parameters: {'user_name': '254718273753', 'password': b'$2b$12$s7/BnivDTo4G7SB3Z4/0vOxOef43w4d3o7GohGhcfnwqPXo9Xos3O', 'entity_id': 1, 'user_type_id': 2, 'user_status': 'active', 'language': 'english', 'date_created': datetime.datetime(2021, 11, 22, 18, 24, 22, 266514), 'live_date': None, 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) 
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1771, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`entity_users`, CONSTRAINT `entity_users_ibfk_2` FOREIGN KEY (`user_type_id`) REFERENCES `user_types` (`id`))')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\SaveToPurchase\registration.py", line 55, in registration
+    db.session.flush()
+  File "<string>", line 2, in flush
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3298, in flush
+    self._flush(objects)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3438, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3398, in _flush
+    flush_context.execute()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\persistence.py", line 242, in save_obj
+    _emit_insert_statements(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\persistence.py", line 1219, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1583, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1452, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1814, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1995, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1771, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`entity_users`, CONSTRAINT `entity_users_ibfk_2` FOREIGN KEY (`user_type_id`) REFERENCES `user_types` (`id`))')
+[SQL: INSERT INTO entity_users (user_name, password, entity_id, user_type_id, user_status, language, date_created, live_date, end_date) VALUES (%(user_name)s, %(password)s, %(entity_id)s, %(user_type_id)s, %(user_status)s, %(language)s, %(date_created)s, %(live_date)s, %(end_date)s)]
+[parameters: {'user_name': '254718273753', 'password': b'$2b$12$s7/BnivDTo4G7SB3Z4/0vOxOef43w4d3o7GohGhcfnwqPXo9Xos3O', 'entity_id': 1, 'user_type_id': 2, 'user_status': 'active', 'language': 'english', 'date_created': datetime.datetime(2021, 11, 22, 18, 24, 22, 266514), 'live_date': None, 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2021-11-22 18:24:23,336 INFO error (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`entity_users`, CONSTRAINT `entity_users_ibfk_2` FOREIGN KEY (`user_type_id`) REFERENCES `user_types` (`id`))')
+[SQL: INSERT INTO entity_users (user_name, password, entity_id, user_type_id, user_status, language, date_created, live_date, end_date) VALUES (%(user_name)s, %(password)s, %(entity_id)s, %(user_type_id)s, %(user_status)s, %(language)s, %(date_created)s, %(live_date)s, %(end_date)s)]
+[parameters: {'user_name': '254718273753', 'password': b'$2b$12$s7/BnivDTo4G7SB3Z4/0vOxOef43w4d3o7GohGhcfnwqPXo9Xos3O', 'entity_id': 1, 'user_type_id': 2, 'user_status': 'active', 'language': 'english', 'date_created': datetime.datetime(2021, 11, 22, 18, 24, 22, 266514), 'live_date': None, 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) occurred username None during registration 
+2021-11-22 22:08:41,014 INFO registration request{'first_name': 'Eustace', 'other_names': 'Mwai', 'entity_type': 'Individual', 'msisdn': '254718273753', 'password': '1234', 'document_type': 'national_id', 'description': 'national_id', 'document_number': '35692358', 'language': 'english', 'currency': 'shillings'} 
+2021-11-22 22:08:43,097 INFO Registration success for 254718273753 
+2021-11-22 22:08:43,232 INFO ussd_register response {'name': 'Eustace', 'other names': 'Mwai', 'created_at': datetime.datetime(2021, 11, 22, 22, 8, 42), 'message': 'success', 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjM3NjUxMzIyfQ.KUETfdOUVeFjAR9mqu-4BFt0075LiCngLzElPjR3aNY'} 
+2021-11-22 22:44:06,896 INFO login {'username': '254718273753', 'password': '1234'} 
+2021-11-22 22:44:06,897 INFO 254718273753 attempt to login 
+2021-11-22 22:44:08,565 INFO 254718273753 login successful 
+2021-11-22 22:44:08,565 INFO login {'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjM3NjUzNDQ4fQ.HPACRUGbB6QjaBaZ8CnenyC4LjOQ4SVE1QAEMF-ncDE', 'id': 2, 'entity_id': 2, 'username': '254718273753', 'first_name': 'Eustace', 'other_names': 'Mwai', 'description': 'national_id', 'document_number': '35692358', 'spending_account_number': '8767184109', 'spending_current_balance': 0.0, 'savings_account_number': '2945736102', 'savings_current_balance': 0.0} 
+2021-11-23 16:41:18,688 ERROR error (pymysql.err.IntegrityError) (1062, "Duplicate entry 'bulk_sms_expenses-100629281' for key 'account_name_account_number'")
+[SQL: INSERT INTO account_types (account_name, account_number, available_amount, global_id, created_by, account_type_status, date_created, live_date, end_date) VALUES (%(account_name)s, %(account_number)s, %(available_amount)s, %(global_id)s, %(created_by)s, %(account_type_status)s, %(date_created)s, %(live_date)s, %(end_date)s)]
+[parameters: {'account_name': 'bulk_sms_expenses', 'account_number': '100629281', 'available_amount': 0, 'global_id': 7, 'created_by': '254718273753', 'account_type_status': 'active', 'date_created': datetime.datetime(2021, 11, 23, 16, 41, 18, 598175), 'live_date': None, 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) in create_account_type 
+2021-11-24 10:25:53,784 INFO login {'username': '254718273753', 'password': '1234'} 
+2021-11-24 10:25:53,784 INFO 254718273753 attempt to login 
+2021-11-24 10:25:55,508 INFO 254718273753 login successful 
+2021-11-24 10:25:55,508 INFO login {'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjM3NzgxOTU1fQ.FGY1xm754JK5MzKHUpWFWFbbJrhYBbwYFsYxJDQEBY0', 'id': 2, 'entity_id': 2, 'username': '254718273753', 'first_name': 'Eustace', 'other_names': 'Mwai', 'description': 'national_id', 'document_number': '35692358', 'spending_account_number': '8767184109', 'spending_current_balance': 0.0, 'savings_account_number': '2945736102', 'savings_current_balance': 0.0} 
+2021-11-24 10:27:02,622 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': 7} 
+2021-11-24 10:27:02,783 ERROR deposit error: 'SaveToPurchase' object has no attribute 'get_random_string' as 254718273753 tried to make a deposit 
+2021-11-24 10:28:47,006 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': 7} 
+2021-11-24 10:28:47,141 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 10:32:46,286 INFO receive_stk_results {'transaction_id': 'FGGGGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'cbVdLjJF', 'status': 'success'} 
+2021-11-24 10:32:47,035 ERROR deposit error: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+[SQL: INSERT INTO items_selected (entity_account_id, entity_user_id, inventory_id, price, savings_made, payment_status, date_created, end_date) VALUES (%(entity_account_id)s, %(entity_user_id)s, %(inventory_id)s, %(price)s, %(savings_made)s, %(payment_status)s, %(date_created)s, %(end_date)s)]
+[parameters: {'entity_account_id': 2, 'entity_user_id': 2, 'inventory_id': 4, 'price': 1000.0, 'savings_made': 100.0, 'payment_status': 'inprogress', 'date_created': datetime.datetime(2021, 11, 24, 10, 32, 46, 913564), 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) 
+2021-11-24 11:05:06,105 INFO receive_stk_results {'transaction_id': 'FGGGGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'cbVdLjJF', 'status': 'success'} 
+2021-11-24 11:05:07,127 ERROR deposit error: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+[SQL: INSERT INTO items_selected (entity_account_id, entity_user_id, inventory_id, price, savings_made, payment_status, date_created, end_date) VALUES (%(entity_account_id)s, %(entity_user_id)s, %(inventory_id)s, %(price)s, %(savings_made)s, %(payment_status)s, %(date_created)s, %(end_date)s)]
+[parameters: {'entity_account_id': 2, 'entity_user_id': 2, 'inventory_id': 4, 'price': 1000.0, 'savings_made': 100.0, 'payment_status': 'inprogress', 'date_created': datetime.datetime(2021, 11, 24, 11, 5, 6, 927513), 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) 
+2021-11-24 11:05:39,650 INFO receive_stk_results {'transaction_id': 'FGGGGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'cbVdLjJF', 'status': 'success'} 
+2021-11-24 11:05:40,651 ERROR deposit error: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+[SQL: INSERT INTO items_selected (entity_account_id, entity_user_id, inventory_id, price, savings_made, payment_status, date_created, end_date) VALUES (%(entity_account_id)s, %(entity_user_id)s, %(inventory_id)s, %(price)s, %(savings_made)s, %(payment_status)s, %(date_created)s, %(end_date)s)]
+[parameters: {'entity_account_id': 2, 'entity_user_id': 2, 'inventory_id': 4, 'price': 1000.0, 'savings_made': 100.0, 'payment_status': 'inprogress', 'date_created': datetime.datetime(2021, 11, 24, 11, 5, 40, 596022), 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) 
+2021-11-24 11:06:31,740 INFO receive_stk_results {'transaction_id': 'FGGGGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'cbVdLjJF', 'status': 'success'} 
+2021-11-24 11:06:32,824 ERROR deposit error: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+[SQL: INSERT INTO items_selected (entity_account_id, entity_user_id, inventory_id, price, savings_made, payment_status, date_created, end_date) VALUES (%(entity_account_id)s, %(entity_user_id)s, %(inventory_id)s, %(price)s, %(savings_made)s, %(payment_status)s, %(date_created)s, %(end_date)s)]
+[parameters: {'entity_account_id': 2, 'entity_user_id': 2, 'inventory_id': 4, 'price': 1000.0, 'savings_made': 100.0, 'payment_status': 'inprogress', 'date_created': datetime.datetime(2021, 11, 24, 11, 6, 32, 774679), 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) 
+2021-11-24 11:07:11,517 INFO receive_stk_results {'transaction_id': 'FGGGGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'cbVdLjJF', 'status': 'success'} 
+2021-11-24 11:07:12,515 ERROR deposit error: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+[SQL: INSERT INTO items_selected (entity_account_id, entity_user_id, inventory_id, price, savings_made, payment_status, date_created, end_date) VALUES (%(entity_account_id)s, %(entity_user_id)s, %(inventory_id)s, %(price)s, %(savings_made)s, %(payment_status)s, %(date_created)s, %(end_date)s)]
+[parameters: {'entity_account_id': 2, 'entity_user_id': 2, 'inventory_id': 4, 'price': 1000.0, 'savings_made': 100.0, 'payment_status': 'inprogress', 'date_created': datetime.datetime(2021, 11, 24, 11, 7, 12, 447128), 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) 
+2021-11-24 11:07:12,515 ERROR (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+[SQL: INSERT INTO items_selected (entity_account_id, entity_user_id, inventory_id, price, savings_made, payment_status, date_created, end_date) VALUES (%(entity_account_id)s, %(entity_user_id)s, %(inventory_id)s, %(price)s, %(savings_made)s, %(payment_status)s, %(date_created)s, %(end_date)s)]
+[parameters: {'entity_account_id': 2, 'entity_user_id': 2, 'inventory_id': 4, 'price': 1000.0, 'savings_made': 100.0, 'payment_status': 'inprogress', 'date_created': datetime.datetime(2021, 11, 24, 11, 7, 12, 447128), 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) 
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1771, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\SaveToPurchase\payments.py", line 421, in receive_stk_results
+    db.session.commit()
+  File "<string>", line 2, in commit
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 1428, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 829, in commit
+    self._prepare_impl()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 808, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3298, in flush
+    self._flush(objects)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3438, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\util\langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\session.py", line 3398, in _flush
+    flush_context.execute()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\persistence.py", line 242, in save_obj
+    _emit_insert_statements(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\orm\persistence.py", line 1219, in _emit_insert_statements
+    result = connection._execute_20(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1583, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1452, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1814, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1995, in _handle_dbapi_exception
+    util.raise_(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\util\compat.py", line 207, in raise_
+    raise exception
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1771, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\sqlalchemy\engine\default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 148, in execute
+    result = self._query(query)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\cursors.py", line 310, in _query
+    conn.query(q)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 775, in _read_query_result
+    result.read()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\connections.py", line 725, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\venv\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`save_to_purchase`.`items_selected`, CONSTRAINT `items_selected_ibfk_1` FOREIGN KEY (`entity_account_id`) REFERENCES `services` (`id`))')
+[SQL: INSERT INTO items_selected (entity_account_id, entity_user_id, inventory_id, price, savings_made, payment_status, date_created, end_date) VALUES (%(entity_account_id)s, %(entity_user_id)s, %(inventory_id)s, %(price)s, %(savings_made)s, %(payment_status)s, %(date_created)s, %(end_date)s)]
+[parameters: {'entity_account_id': 2, 'entity_user_id': 2, 'inventory_id': 4, 'price': 1000.0, 'savings_made': 100.0, 'payment_status': 'inprogress', 'date_created': datetime.datetime(2021, 11, 24, 11, 7, 12, 447128), 'end_date': None}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2021-11-24 11:18:20,938 INFO receive_stk_results {'transaction_id': 'FGGGGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'cbVdLjJF', 'status': 'success'} 
+2021-11-24 11:18:21,641 INFO process_verified_deposits response {'transactions_id': 'ItdebBtwWjqkwyJS', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '100', 'current_balance': 100.0, 'created_at': datetime.datetime(2021, 11, 24, 11, 18, 21), 'message': 'success'} 
+2021-11-24 11:19:09,984 INFO deposit request {'msisdn': '254718273753', 'amount': '400', 'entity_acc_number': '2945736102', 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': 7} 
+2021-11-24 11:19:10,167 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 11:19:42,148 INFO receive_stk_results {'transaction_id': 'FGgdggdGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'mBYzwEIL', 'status': 'success'} 
+2021-11-24 11:19:42,777 ERROR deposit error: '>=' not supported between instances of 'str' and 'float' 
+2021-11-24 11:19:42,778 ERROR '>=' not supported between instances of 'str' and 'float' 
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\SaveToPurchase\payments.py", line 387, in receive_stk_results
+    if user.amount >= group.price:
+TypeError: '>=' not supported between instances of 'str' and 'float'
+2021-11-24 11:20:21,587 INFO receive_stk_results {'transaction_id': 'FGgdggdGGdfvdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'mBYzwEIL', 'status': 'success'} 
+2021-11-24 11:20:22,216 INFO process_verified_deposits response {'transactions_id': 'pGGHlvUnyzYenenx', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '400', 'current_balance': 500.0, 'created_at': datetime.datetime(2021, 11, 24, 11, 20, 21), 'message': 'success'} 
+2021-11-24 11:21:05,618 INFO deposit request {'msisdn': '254718273753', 'amount': '1000', 'entity_acc_number': '2945736102', 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': 7} 
+2021-11-24 11:21:05,715 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 11:21:39,164 INFO receive_stk_results {'transaction_id': 'FGgd&&GSVvsdUOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'QFxQutnq', 'status': 'success'} 
+2021-11-24 11:21:39,523 INFO process_verified_deposits response {'transactions_id': 'PdZlrhahNMKSbIzj', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '1000', 'current_balance': 1500.0, 'created_at': datetime.datetime(2021, 11, 24, 11, 21, 39), 'message': 'success'} 
+2021-11-24 11:46:39,182 INFO get_customer_details {'username': '254718273753'} 
+2021-11-24 11:46:39,238 INFO get_customer_details response{'first_name': 'Eustace', 'other_name': 'Mwai', 'national_id': '35692358', 'registration_date': datetime.datetime(2021, 11, 22, 22, 8, 42), 'id': 2, 'entity_id': 2, 'username': '254718273753', 'spending_account_number': '8767184109', 'spending_current_balance': 0.0, 'savings_account_number': '2945736102', 'savings_current_balance': 1500.0} 
+2021-11-24 12:01:53,472 INFO deposit request {'msisdn': '254718273753', 'amount': '1000', 'entity_acc_number': '2945736102', 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': 7} 
+2021-11-24 12:01:53,558 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 12:02:26,060 INFO receive_stk_results {'transaction_id': 'PFFGGGOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'hxEnSZuo', 'status': 'success'} 
+2021-11-24 12:02:26,345 INFO process_verified_deposits response {'transactions_id': 'RnlqYUmFfLHnjYRi', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '1000', 'current_balance': 2500.0, 'created_at': datetime.datetime(2021, 11, 24, 12, 2, 26), 'message': 'success'} 
+2021-11-24 12:04:07,938 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': 7} 
+2021-11-24 12:04:08,000 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 12:05:33,403 INFO receive_stk_results {'transaction_id': 'PFFHHHOg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'LSbISjkI', 'status': 'success'} 
+2021-11-24 12:05:33,723 INFO process_verified_deposits response {'transactions_id': 'xSNMsbqnTOcNzIFN', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '100', 'current_balance': 2600.0, 'created_at': datetime.datetime(2021, 11, 24, 12, 5, 33), 'message': 'success'} 
+2021-11-24 12:08:22,595 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': 7} 
+2021-11-24 12:08:22,768 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 12:08:56,288 INFO receive_stk_results {'transaction_id': 'PFFHHSjg', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'seVLhyfc', 'status': 'success'} 
+2021-11-24 12:08:56,737 INFO process_verified_deposits response {'transactions_id': 'EBmSiZQlJncAzRqW', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '100', 'current_balance': 2700.0, 'created_at': datetime.datetime(2021, 11, 24, 12, 8, 56), 'message': 'success'} 
+2021-11-24 12:43:06,292 INFO customer_items {'username': '254718273753'} 
+2021-11-24 12:43:06,301 INFO my_approvals {'pending_approvals': [{'id': 1, 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': '7', 'price': 1000.0, 'savings_made': 1200.0, 'date_requested': datetime.datetime(2021, 11, 24, 12, 8, 15)}]} 
+2021-11-24 12:49:43,013 INFO customer_items {'username': '254718273753'} 
+2021-11-24 12:49:43,020 INFO customer_items {'customer_items': [{'id': 1, 'item_name': 'Water_lc_pump', 'item_model': 'D2', 'item_size': '7', 'price': 1000.0, 'savings_made': 1000.0, 'pending_balance': 0.0, 'date_requested': datetime.datetime(2021, 11, 24, 12, 8, 15)}]} 
+2021-11-24 13:07:31,344 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 13:07:31,569 INFO receive_stk_results {'transaction_id': 'PJELFqQhbZ', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'ELFqQhbZ', 'status': 'success'} 
+2021-11-24 13:07:31,878 INFO process_verified_deposits response {'transactions_id': 'lcabRBsRsNEPDjIO', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '100', 'current_balance': 2800.0, 'created_at': datetime.datetime(2021, 11, 24, 13, 7, 31), 'message': 'success'} 
+2021-11-24 13:07:31,881 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 13:08:06,459 INFO deposit request {'msisdn': '254718273753', 'amount': '400', 'entity_acc_number': '2945736102', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 13:08:06,641 INFO receive_stk_results {'transaction_id': 'PJFRGOzvLJ', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'FRGOzvLJ', 'status': 'success'} 
+2021-11-24 13:08:06,825 INFO process_verified_deposits response {'transactions_id': 'rFaaQjCxmXhPkbdq', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '400', 'current_balance': 3200.0, 'created_at': datetime.datetime(2021, 11, 24, 13, 8, 6), 'message': 'success'} 
+2021-11-24 13:08:06,844 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 13:08:14,151 INFO customer_items {'username': '254718273753'} 
+2021-11-24 13:08:14,157 INFO customer_items {'customer_items': [{'id': 1, 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': '7', 'price': 1000.0, 'savings_made': 1000.0, 'pending_balance': 0.0, 'date_requested': datetime.datetime(2021, 11, 24, 12, 8, 15)}, {'id': 2, 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': '7', 'price': 1200.0, 'savings_made': 500.0, 'pending_balance': 700.0, 'date_requested': datetime.datetime(2021, 11, 24, 13, 6, 53)}]} 
+2021-11-24 13:09:40,967 INFO registration request{'first_name': 'Jonas', 'other_names': 'Blue', 'entity_type': 'Individual', 'msisdn': '254712277384', 'password': '1234', 'document_type': 'national_id', 'description': 'national_id', 'document_number': '30005358', 'language': 'english', 'currency': 'shillings'} 
+2021-11-24 13:09:41,710 INFO Registration success for 254712277384 
+2021-11-24 13:09:41,716 INFO ussd_register response {'name': 'Jonas', 'other names': 'Blue', 'created_at': datetime.datetime(2021, 11, 24, 13, 9, 41), 'message': 'success', 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MywiZXhwIjoxNjM3NzkxNzgxfQ.BRxqzCXQsZHxQetbDnLt9uyPX0bniJ1YS60X8lxxBTo'} 
+2021-11-24 13:10:09,342 INFO deposit request {'msisdn': '254712277384', 'amount': '400', 'entity_acc_number': '2791541833', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 13:10:09,486 INFO receive_stk_results {'transaction_id': 'PJbKrWHLZs', 'account': 'test', 'name': 'Jonas', 'description': 'The service request is processed successfully.', 'reference': 'bKrWHLZs', 'status': 'success'} 
+2021-11-24 13:10:09,731 INFO process_verified_deposits response {'transactions_id': 'CGKyrgjzUYQrxkwe', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '400', 'current_balance': 400.0, 'created_at': datetime.datetime(2021, 11, 24, 13, 10, 9), 'message': 'success'} 
+2021-11-24 13:10:09,733 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 13:11:19,653 INFO get_customer_details {'username': '254718273753'} 
+2021-11-24 13:11:19,657 INFO get_customer_details response{'first_name': 'Eustace', 'other_name': 'Mwai', 'national_id': '35692358', 'registration_date': datetime.datetime(2021, 11, 22, 22, 8, 42), 'id': 2, 'entity_id': 2, 'username': '254718273753', 'spending_account_number': '8767184109', 'spending_current_balance': 0.0, 'savings_account_number': '2945736102', 'savings_current_balance': 3200.0} 
+2021-11-24 13:13:34,212 INFO registration request{'first_name': 'Ken', 'other_names': 'Macharia', 'entity_type': 'Individual', 'msisdn': '254720299122', 'password': '1234', 'document_type': 'national_id', 'description': 'national_id', 'document_number': '20005358', 'language': 'english', 'currency': 'shillings'} 
+2021-11-24 13:13:35,488 INFO Registration success for 254720299122 
+2021-11-24 13:13:35,525 INFO ussd_register response {'name': 'Ken', 'other names': 'Macharia', 'created_at': datetime.datetime(2021, 11, 24, 13, 13, 35), 'message': 'success', 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NCwiZXhwIjoxNjM3NzkyMDE1fQ.Q9VXsxT1lXkpZsMryi5rLILD1PQPBpNaIzZCrs8FrWo'} 
+2021-11-24 13:14:36,674 INFO deposit request {'msisdn': '254720299122', 'amount': '200', 'entity_acc_number': '1096007362', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 13:14:36,941 INFO receive_stk_results {'transaction_id': 'PJpLvKOleb', 'account': 'test', 'name': 'Ken', 'description': 'The service request is processed successfully.', 'reference': 'pLvKOleb', 'status': 'success'} 
+2021-11-24 13:14:37,270 INFO process_verified_deposits response {'transactions_id': 'sThlUtUQAukLiKew', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '200', 'current_balance': 200.0, 'created_at': datetime.datetime(2021, 11, 24, 13, 14, 37), 'message': 'success'} 
+2021-11-24 13:14:37,280 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 13:15:44,148 INFO get_customer_details {'username': '254720299122'} 
+2021-11-24 13:15:44,158 INFO get_customer_details response{'first_name': 'Ken', 'other_name': 'Macharia', 'national_id': '20005358', 'registration_date': datetime.datetime(2021, 11, 24, 13, 13, 35), 'id': 4, 'entity_id': 4, 'username': '254720299122', 'spending_account_number': '9888495677', 'spending_current_balance': 0.0, 'savings_account_number': '1096007362', 'savings_current_balance': 200.0} 
+2021-11-24 13:23:11,858 INFO deposit request {'msisdn': '254720299122', 'amount': '500', 'entity_acc_number': '1096007362', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 13:23:12,172 INFO receive_stk_results {'transaction_id': 'PJIVqBmmqc', 'account': 'test', 'name': 'Ken', 'description': 'The service request is processed successfully.', 'reference': 'IVqBmmqc', 'status': 'success'} 
+2021-11-24 13:23:12,557 INFO process_verified_deposits response {'transactions_id': 'EmvakrGtfmUnIdrx', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '500', 'current_balance': 700.0, 'created_at': datetime.datetime(2021, 11, 24, 13, 23, 12), 'message': 'success'} 
+2021-11-24 13:23:12,570 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 13:23:48,966 INFO customer_items {'username': '254720299122'} 
+2021-11-24 13:23:48,995 INFO customer_items {'customer_items': [{'id': 4, 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': '7', 'price': 1200.0, 'savings_made': 700.0, 'pending_balance': 500.0, 'date_requested': datetime.datetime(2021, 11, 24, 13, 6, 53)}]} 
+2021-11-24 13:24:22,005 INFO customer_items {'username': '254718273753'} 
+2021-11-24 13:24:22,019 INFO customer_items {'customer_items': [{'id': 1, 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': '7', 'price': 1000.0, 'savings_made': 1000.0, 'pending_balance': 0.0, 'date_requested': datetime.datetime(2021, 11, 24, 12, 8, 15)}, {'id': 2, 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': '7', 'price': 1200.0, 'savings_made': 500.0, 'pending_balance': 700.0, 'date_requested': datetime.datetime(2021, 11, 24, 13, 6, 53)}]} 
+2021-11-24 14:34:14,872 INFO registration request{'first_name': 'Julie', 'other_names': 'Kivuva', 'entity_type': 'Individual', 'msisdn': '254707122352', 'password': '1234', 'document_type': 'national_id', 'description': 'national_id', 'document_number': '351005358', 'language': 'english', 'currency': 'shillings'} 
+2021-11-24 14:34:15,634 INFO Registration success for 254707122352 
+2021-11-24 14:34:15,764 INFO ussd_register response {'name': 'Julie', 'other names': 'Kivuva', 'created_at': datetime.datetime(2021, 11, 24, 14, 34, 15), 'message': 'success', 'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NSwiZXhwIjoxNjM3Nzk2ODU1fQ.MMcmJIW2-dOku4CpmLDrXsWcgttTdtucvRwe-TrUroE'} 
+2021-11-24 14:34:47,946 INFO deposit request {'msisdn': '254707122352', 'amount': '200', 'entity_acc_number': '1096007362', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 14:34:48,193 INFO receive_stk_results {'transaction_id': 'PJoPypMKKm', 'account': 'test', 'name': 'Julie', 'description': 'The service request is processed successfully.', 'reference': 'oPypMKKm', 'status': 'success'} 
+2021-11-24 14:34:48,512 INFO process_verified_deposits response {'transactions_id': 'gTRwjZxfhZLFzSTW', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '200', 'current_balance': 200.0, 'created_at': datetime.datetime(2021, 11, 24, 14, 34, 48), 'message': 'success'} 
+2021-11-24 14:34:48,516 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 14:35:06,056 INFO deposit request {'msisdn': '254707122352', 'amount': '100', 'entity_acc_number': '1096007362', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 14:35:06,257 INFO receive_stk_results {'transaction_id': 'PJfBntzxue', 'account': 'test', 'name': 'Julie', 'description': 'The service request is processed successfully.', 'reference': 'fBntzxue', 'status': 'success'} 
+2021-11-24 14:35:06,573 INFO process_verified_deposits response {'transactions_id': 'iKeAjPaLaotpUGWK', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '100', 'current_balance': 300.0, 'created_at': datetime.datetime(2021, 11, 24, 14, 35, 6), 'message': 'success'} 
+2021-11-24 14:35:06,576 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 14:35:36,914 INFO customer_items {'username': '254720299122'} 
+2021-11-24 14:35:36,920 INFO customer_items {'customer_items': [{'id': 4, 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': '7', 'price': 1200.0, 'savings_made': 700.0, 'pending_balance': 500.0, 'date_requested': datetime.datetime(2021, 11, 24, 13, 6, 53)}]} 
+2021-11-24 14:36:09,990 INFO customer_items {'username': '254707122352'} 
+2021-11-24 14:36:09,995 INFO customer_items {'customer_items': [{'id': 5, 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': '7', 'price': 1200.0, 'savings_made': 300.0, 'pending_balance': 900.0, 'date_requested': datetime.datetime(2021, 11, 24, 14, 34, 9)}]} 
+2021-11-24 14:37:16,444 INFO get_customer_details {'username': '254707122352'} 
+2021-11-24 14:37:16,449 INFO get_customer_details response{'first_name': 'Julie', 'other_name': 'Kivuva', 'national_id': '351005358', 'registration_date': datetime.datetime(2021, 11, 24, 14, 34, 15), 'id': 5, 'entity_id': 5, 'username': '254707122352', 'spending_account_number': '9132145845', 'spending_current_balance': 0.0, 'savings_account_number': '5482963185', 'savings_current_balance': 300.0} 
+2021-11-24 15:17:45,948 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:17:46,193 INFO receive_stk_results {'transaction_id': 'PJHnIxeJNN', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'HnIxeJNN', 'status': 'success'} 
+2021-11-24 15:17:46,416 INFO process_verified_deposits response {'transactions_id': 'QfGNDqieJrzIysjC', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '100', 'current_balance': 3300.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 17, 46), 'message': 'success'} 
+2021-11-24 15:17:46,419 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:18:51,317 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:18:51,647 INFO receive_stk_results {'transaction_id': 'PJJajhQDjx', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'JajhQDjx', 'status': 'success'} 
+2021-11-24 15:18:51,843 ERROR deposit error: unsupported format string passed to BinaryExpression.__format__ 
+2021-11-24 15:18:51,843 ERROR unsupported format string passed to BinaryExpression.__format__ 
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\SaveToPurchase\payments.py", line 422, in receive_stk_results
+    text="You have deposited Ksh. {:,.2f} to Davis and Shirtliff\n"
+TypeError: unsupported format string passed to BinaryExpression.__format__
+2021-11-24 15:18:51,846 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:19:54,290 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:19:54,443 INFO receive_stk_results {'transaction_id': 'PJrlFwHPDm', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'rlFwHPDm', 'status': 'success'} 
+2021-11-24 15:19:54,667 ERROR deposit error: unsupported format string passed to BinaryExpression.__format__ 
+2021-11-24 15:19:54,667 ERROR unsupported format string passed to BinaryExpression.__format__ 
+Traceback (most recent call last):
+  File "C:\Users\Eustace\PycharmProjects\SaveToPurchase\SaveToPurchase\payments.py", line 424, in receive_stk_results
+    text="You have deposited Ksh. {:,.2f} to Davis and Shirtliff\n"
+TypeError: unsupported format string passed to BinaryExpression.__format__
+2021-11-24 15:19:54,672 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:23:22,075 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:23:22,262 INFO receive_stk_results {'transaction_id': 'PJXLSZeKNA', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'XLSZeKNA', 'status': 'success'} 
+2021-11-24 15:23:23,878 INFO process_verified_deposits response {'transactions_id': 'nIQjqQNmRxDFBIMP', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3550.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 23, 22), 'message': 'success'} 
+2021-11-24 15:23:23,882 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:24:34,572 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:24:34,755 INFO receive_stk_results {'transaction_id': 'PJQAQqJupz', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'QAQqJupz', 'status': 'success'} 
+2021-11-24 15:24:35,617 INFO process_verified_deposits response {'transactions_id': 'gyqEAjiXsEwyTZZo', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3600.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 24, 34), 'message': 'success'} 
+2021-11-24 15:24:35,620 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:29:21,766 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:29:22,034 INFO receive_stk_results {'transaction_id': 'PJPRVgYCMB', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'PRVgYCMB', 'status': 'success'} 
+2021-11-24 15:29:23,247 INFO process_verified_deposits response {'transactions_id': 'aBjQboYnuKtExxdc', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3650.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 29, 22), 'message': 'success'} 
+2021-11-24 15:29:23,260 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:32:35,113 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:32:35,200 INFO receive_stk_results {'transaction_id': 'PJhLjljTYC', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'hLjljTYC', 'status': 'success'} 
+2021-11-24 15:32:36,080 INFO process_verified_deposits response {'transactions_id': 'mQRfjKiFsdTymeDf', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3700.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 32, 35), 'message': 'success'} 
+2021-11-24 15:32:36,083 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:33:11,525 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:33:11,873 INFO receive_stk_results {'transaction_id': 'PJiFgbzPKz', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'iFgbzPKz', 'status': 'success'} 
+2021-11-24 15:33:12,970 INFO process_verified_deposits response {'transactions_id': 'jMqonKkbjWqBEMuw', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3750.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 33, 11), 'message': 'success'} 
+2021-11-24 15:33:12,974 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:34:18,698 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:34:18,787 INFO receive_stk_results {'transaction_id': 'PJbZIMpHBA', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'bZIMpHBA', 'status': 'success'} 
+2021-11-24 15:34:20,274 INFO process_verified_deposits response {'transactions_id': 'TdjsiXBxQrBZenPv', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3800.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 34, 18), 'message': 'success'} 
+2021-11-24 15:34:20,282 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:40:55,439 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:40:55,586 INFO receive_stk_results {'transaction_id': 'PJseThdzVG', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'seThdzVG', 'status': 'success'} 
+2021-11-24 15:40:56,657 INFO process_verified_deposits response {'transactions_id': 'cNJcWUpTWpIMAgdA', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3850.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 40, 55), 'message': 'success'} 
+2021-11-24 15:40:56,661 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:44:57,958 INFO deposit request {'msisdn': '254718273753', 'amount': '50', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 10} 
+2021-11-24 15:44:58,029 INFO receive_stk_results {'transaction_id': 'PJNSpDeaSS', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'NSpDeaSS', 'status': 'success'} 
+2021-11-24 15:44:58,833 INFO process_verified_deposits response {'transactions_id': 'yETKCHpFYKqtEqIF', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '50', 'current_balance': 3900.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 44, 58), 'message': 'success'} 
+2021-11-24 15:44:58,837 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 15:53:51,287 INFO deposit request {'msisdn': '254718273753', 'amount': '700', 'entity_acc_number': '2945736102', 'item_name': 'Water_DT_pump', 'item_model': 'E10', 'item_size': 7} 
+2021-11-24 15:53:51,511 INFO receive_stk_results {'transaction_id': 'PJkZihNYBj', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'kZihNYBj', 'status': 'success'} 
+2021-11-24 15:53:52,455 INFO process_verified_deposits response {'transactions_id': 'xruAZcFOQoQEHeOr', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '700', 'current_balance': 4600.0, 'created_at': datetime.datetime(2021, 11, 24, 15, 53, 51), 'message': 'success'} 
+2021-11-24 15:53:52,460 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 16:02:16,325 INFO deposit request {'msisdn': '254718273753', 'amount': '1000', 'entity_acc_number': '2945736102', 'item_name': 'Bore_HolePump', 'item_model': 'h10', 'item_size': 2} 
+2021-11-24 16:02:16,405 INFO receive_stk_results {'transaction_id': 'PJsnjbyqQX', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'snjbyqQX', 'status': 'success'} 
+2021-11-24 16:02:18,200 INFO process_verified_deposits response {'transactions_id': 'ovvMdhMTnnvWnzLq', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '1000', 'current_balance': 5600.0, 'created_at': datetime.datetime(2021, 11, 24, 16, 2, 16), 'message': 'success'} 
+2021-11-24 16:02:18,206 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-24 16:07:35,419 INFO deposit request {'msisdn': '254718273753', 'amount': '100', 'entity_acc_number': '2945736102', 'item_name': 'Kitchen_tap', 'item_model': 'h10', 'item_size': 2} 
+2021-11-24 16:07:35,700 INFO receive_stk_results {'transaction_id': 'PJhnISpShy', 'account': 'test', 'name': 'Eustace', 'description': 'The service request is processed successfully.', 'reference': 'hnISpShy', 'status': 'success'} 
+2021-11-24 16:07:46,047 INFO process_verified_deposits response {'transactions_id': 'vYsBwryXPUeFacca', 'description': 'Deposit from Mpesa to Davis.', 'amount_deposited': '100', 'current_balance': 5700.0, 'created_at': datetime.datetime(2021, 11, 24, 16, 7, 35), 'message': 'success'} 
+2021-11-24 16:07:46,055 INFO deposit request {'message': 'Stk sent successful'} 
+2021-11-25 10:17:54,597 INFO Ussd callback request{'msisdn': '254718273753', 'sessionId': 'H554gvdgHSEEE', 'serviceCode': '835', 'ussdString': ''} 
+2021-11-25 10:17:55,362 INFO text 
+2021-11-25 10:17:55,362 INFO session_idH554gvdgHSEEE 
+2021-11-25 10:17:55,362 INFO serviceCode835 
+2021-11-25 10:17:55,363 INFO phoneNumber254718273753 
+2021-11-25 10:18:50,486 INFO Ussd callback request{'msisdn': '254718273753', 'sessionId': 'H554gvdgHSEEE', 'serviceCode': '835', 'ussdString': ''} 
+2021-11-25 10:18:50,897 INFO text 
+2021-11-25 10:18:50,898 INFO session_idH554gvdgHSEEE 
+2021-11-25 10:18:50,898 INFO serviceCode835 
+2021-11-25 10:18:50,898 INFO phoneNumber254718273753 
+2021-11-25 10:18:50,984 INFO get_customer_accounts {'username': '254718273753'} 
+2021-11-25 10:18:51,056 INFO get_customer_accounts {'id': 2, 'entity_id': 2, 'username': '254718273753', 'spending_account_number': '8767184109', 'spending_current_balance': 0.0, 'savings_account_number': '2945736102', 'savings_current_balance': 5700.0} 
+2021-11-25 10:43:18,854 INFO Ussd callback request{'msisdn': '254718273750', 'sessionId': 'HTTydygHSEEE', 'serviceCode': '835', 'ussdString': ''} 
+2021-11-25 10:43:19,280 INFO session_idHTTydygHSEEE 
+2021-11-25 10:43:19,280 INFO serviceCode835 
+2021-11-25 10:43:19,281 INFO phoneNumber254718273750 
